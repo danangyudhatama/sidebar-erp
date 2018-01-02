@@ -17,8 +17,7 @@ html, body, #menu {
   background-color: #2F343D;
   border: 2px solid #ccc;
   border-bottom-width: 0;
-  transform: translateY(-2px);
-  border-radius: 0 10px 0 0; }
+  transform: translateY(-2px); }
   #sidebar * {
     margin: 0;
     padding: 0;
@@ -86,12 +85,10 @@ html, body, #menu {
     #sidebar .search .searchTerm {
       height: 100%;
       width: 84%;
-      padding: 5px;
-      border-radius: 4px; }
+      padding: 5px; }
     #sidebar .search .searchButton {
       height: 100%;
       width: 16%;
-      border-radius: 4px;
       cursor: pointer; }
   #sidebar #menu {
     display: flex;
@@ -109,8 +106,7 @@ html, body, #menu {
       min-width: 60px;
       max-height: 90px;
       min-height: 45px;
-      border: 1px solid grey;
-      border-radius: 0 10px 10px 0; }
+      border: 1px solid grey; }
       #sidebar #main-menu-bar .main-menu a {
         color: white; }
         #sidebar #main-menu-bar .main-menu a.active {
@@ -119,8 +115,7 @@ html, body, #menu {
       border-bottom-width: 1px; }
     #sidebar #main-menu-bar .active {
       background-color: transparent;
-      border-radius: 5px 0 0 5px;
-      border: 0px;
+      border: 1px;
       color: black; }
   #sidebar #sub-menu-container {
     overflow-y: auto;
@@ -129,12 +124,9 @@ html, body, #menu {
     margin: 0 auto; }
   #sidebar #sub-menu-bar {
     display: block;
-    width: 100%;
-    margin: 0;
-    background: #FFF;
-    -webkit-border-radius: 4px;
-    -moz-border-radius: 4px;
-    border-radius: 4px; }
+    width: 90%;
+    margin: 0 5% 0 0;
+    background: #FFF; }
     #sidebar #sub-menu-bar .default .submenu {
       display: block; }
     #sidebar #sub-menu-bar .link {
