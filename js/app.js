@@ -48,10 +48,9 @@ function injectSubMenu() {
 
 		`);
 
-	$('#sub-menu-bar').hide().fadeIn("slow");
-
 }
 
+// submenu accordion-like class
 
 $(function() {
 	var Accordion = function(el, multiple) {
@@ -77,17 +76,93 @@ $(function() {
 		};
 	}	
 
+	// menentukan element yang menggunakan class Accordion
+
 	var accordion = new Accordion($('#sub-menu-bar'), true);
 
+
+	// onclick event main-menu
 	$('.main-menu').on('click', function() {
 
 		$('.main-menu').removeClass('active');
-		// $(".main-menu > a").removeClass('active');
-
 		$(this).addClass('active');
-		// $(this).children().addClass('active');
 		injectSubMenu();
 		var accordion = new Accordion($('#sub-menu-bar'), true);
+		animasi($(this),$('#sub-menu-container'));
 	});
 
+	
+	var toggle = false;
+
+    $(".fa-window-minimize").click(function() {
+        toggle = !toggle;
+
+        if(toggle){
+            $('#sidebar').animate({height: "10%"},"fast");
+            $('#menu').css('display', 'none');
+            $('#headbar, #search').css('height','50%');
+        }
+        else{
+            $('#sidebar').animate({height: "100%"},"fast");
+            $('#menu').css('display', '');
+            $('#headbar, #search').css('height','');
+        }
+
+    });
+
+
+
 });
+
+// onclick event minimize
+// $( ".fa-window-minimize" ).toggle(function() {
+//   alert( "First handler for .toggle() called." );
+// }, function() {
+//   alert( "Second handler for .toggle() called." );
+// });
+// $('.fa-window-minimize').toggle(function() {
+// 	$('#menu').css('display', 'hidden');
+// 	$('#sidebar').css('height','10%');
+// 	$('#header','#search').css('height','50%');
+// }, function() {
+// 	$('#menu').css('display', '');
+// 	$('#sidebar').css('height','');
+// 	$('#header','#search').css('height','');
+// });
+	
+const subMenu =  $('#sub-menu-container');	
+const subMenuWidth = subMenu.width();
+
+
+
+function animasi (mainMenu,subMenu) {
+	subMenu.finish();
+	var mainMenuPos = mainMenu.position();
+
+	
+	subMenu.css({
+		"position": "absolute",
+		"top": mainMenuPos.top,
+		"left": mainMenuPos.left,
+		"margin-left": "-100%",
+		"width":  "70%",
+		"height": "47px",
+		"transition": "0s",
+	});
+
+
+	subMenu.animate(
+		{
+		    "left": mainMenu.width(),
+		    "margin-left": "0",
+		    "height": "47px",
+    	},250);
+
+	setTimeout(function(){
+		subMenu.animate({
+			"top": 0,
+			"height": "100%",
+		},250)
+	},125);
+
+}

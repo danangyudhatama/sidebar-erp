@@ -5,21 +5,19 @@ html, body, #menu {
   margin: 0;
 }
 
+$sidebar-width: 325px;
 
 #sidebar {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 20%;
+  bottom: 0;
   left: 0;
   width: 20%;
-  height: 80%;
-  min-width: 325px;
+  height: 100%;
+  min-width: $sidebar-width;
   max-width: 450px;
   background-color: #2F343D;
-  border:2px solid #ccc;
-  border-bottom-width: 0;
-  transform: translateY(-2px);
 
   * {
     margin: 0;
@@ -68,7 +66,6 @@ html, body, #menu {
         -ms-user-select: none;
             user-select: none;
     font-size: 1rem;
-        background-color: #15171B;
     line-height: 1.5;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
   }
@@ -78,6 +75,7 @@ html, body, #menu {
     background-color: #b63b4d;
     border-color: #0062cc;
   }
+  
 
   #headbar {
     display: flex;
@@ -85,7 +83,7 @@ html, body, #menu {
     background-color: #15171B;
     color: white;
     height: 5%;
-    min-height: 2rem; 
+    max-height: 48px;
     width: 100%;
     text-align: center;
 
@@ -101,14 +99,13 @@ html, body, #menu {
     }
   }
 
-  .search {
+  #search {
     position: relative;
     display: flex;
     justify-content: space-between;
-    width: 100%;
-    height: 40px;
-    margin: 5px 0;
-    padding: 0 10px;   
+    width: 100%; 
+    height: 5%;
+    max-height: 48px;
     font-size: 14px;
     font-weight: 700;
 
@@ -133,26 +130,27 @@ html, body, #menu {
   }
 
   #main-menu-bar {
-    width: 28%;
+    width: 25%;
     height: 100%;
-    max-width: 100px;
-    margin-left: 10px;
+    max-width: 75px;
     color: white;
+    background-color: #15171B;
     overflow-y: auto;
+    z-index: 10;
 
     .main-menu {
       width: 100%;
       height: 100%;
-      min-width: 60px;
-      max-height: 90px;
-      min-height: 45px;
-      border: 1px solid grey;
-
+      max-width: 75px;
+      max-height: 75px;
+      border: 1px solid #646464;
       a {
         color: white;
 
         &.active {
           color: black;
+          border-width: 1px 0 1px 1px;
+
         }
       }
     }
@@ -162,7 +160,7 @@ html, body, #menu {
     }
     
     .active {
-      background-color: transparent;
+      background-color: #15171B;
       border: 1px;
       color: black;
 
@@ -172,15 +170,25 @@ html, body, #menu {
 
   #sub-menu-container {
     overflow-y: auto;
-    width: calc(100% - 100px);
     width: 70%;
-    margin: 0 auto;
+    height: 100%;
+    margin: 0 5% 0 0
+;
+    margin-left: 0;
+    background-color: #15171B;
+    transition: 0.5s;
+    z-index: 5;
+    
+    &.animate {
+      transition: 0.5s linear;
+      transform: translateY(0px) !important;
+    }
   }
 
   #sub-menu-bar {
     display: block;
-    width: 90%;
-    margin: 0 5% 0 0;
+    width: 95%;
+    margin: 0 0 0 5%;
     background: #FFF;
     
     .default .submenu {
@@ -199,10 +207,6 @@ html, body, #menu {
       -webkit-transition: all 0.4s ease;
       -o-transition: all 0.4s ease;
       transition: all 0.4s ease;
-    }
-
-    li:last-child .link {
-      border-bottom: 0;
     }
 
     li {

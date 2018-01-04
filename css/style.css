@@ -8,16 +8,13 @@ html, body, #menu {
   position: absolute;
   display: flex;
   flex-direction: column;
-  top: 20%;
+  bottom: 0;
   left: 0;
   width: 20%;
-  height: 80%;
+  height: 100%;
   min-width: 325px;
   max-width: 450px;
-  background-color: #2F343D;
-  border: 2px solid #ccc;
-  border-bottom-width: 0;
-  transform: translateY(-2px); }
+  background-color: #2F343D; }
   #sidebar * {
     margin: 0;
     padding: 0;
@@ -50,7 +47,6 @@ html, body, #menu {
     -ms-user-select: none;
     user-select: none;
     font-size: 1rem;
-    background-color: #15171B;
     line-height: 1.5;
     transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out; }
   #sidebar .button:hover {
@@ -63,7 +59,7 @@ html, body, #menu {
     background-color: #15171B;
     color: white;
     height: 5%;
-    min-height: 2rem;
+    max-height: 48px;
     width: 100%;
     text-align: center; }
     #sidebar #headbar #title {
@@ -72,21 +68,20 @@ html, body, #menu {
       display: flex; }
       #sidebar #headbar #control span {
         margin: 10px; }
-  #sidebar .search {
+  #sidebar #search {
     position: relative;
     display: flex;
     justify-content: space-between;
     width: 100%;
-    height: 40px;
-    margin: 5px 0;
-    padding: 0 10px;
+    height: 5%;
+    max-height: 48px;
     font-size: 14px;
     font-weight: 700; }
-    #sidebar .search .searchTerm {
+    #sidebar #search .searchTerm {
       height: 100%;
       width: 84%;
       padding: 5px; }
-    #sidebar .search .searchButton {
+    #sidebar #search .searchButton {
       height: 100%;
       width: 16%;
       cursor: pointer; }
@@ -94,38 +89,46 @@ html, body, #menu {
     display: flex;
     align-content: flex-end; }
   #sidebar #main-menu-bar {
-    width: 28%;
+    width: 25%;
     height: 100%;
-    max-width: 100px;
-    margin-left: 10px;
+    max-width: 75px;
     color: white;
-    overflow-y: auto; }
+    background-color: #15171B;
+    overflow-y: auto;
+    z-index: 10; }
     #sidebar #main-menu-bar .main-menu {
       width: 100%;
       height: 100%;
-      min-width: 60px;
-      max-height: 90px;
-      min-height: 45px;
-      border: 1px solid grey; }
+      max-width: 75px;
+      max-height: 75px;
+      border: 1px solid #646464; }
       #sidebar #main-menu-bar .main-menu a {
         color: white; }
         #sidebar #main-menu-bar .main-menu a.active {
-          color: black; }
+          color: black;
+          border-width: 1px 0 1px 1px; }
     #sidebar #main-menu-bar li:last-child {
       border-bottom-width: 1px; }
     #sidebar #main-menu-bar .active {
-      background-color: transparent;
+      background-color: #15171B;
       border: 1px;
       color: black; }
   #sidebar #sub-menu-container {
     overflow-y: auto;
-    width: calc(100% - 100px);
     width: 70%;
-    margin: 0 auto; }
+    height: 100%;
+    margin: 0 5% 0 0;
+    margin-left: 0;
+    background-color: #15171B;
+    transition: 0.5s;
+    z-index: 5; }
+    #sidebar #sub-menu-container.animate {
+      transition: 0.5s linear;
+      transform: translateY(0px) !important; }
   #sidebar #sub-menu-bar {
     display: block;
-    width: 90%;
-    margin: 0 5% 0 0;
+    width: 95%;
+    margin: 0 0 0 5%;
     background: #FFF; }
     #sidebar #sub-menu-bar .default .submenu {
       display: block; }
@@ -141,8 +144,6 @@ html, body, #menu {
       -webkit-transition: all 0.4s ease;
       -o-transition: all 0.4s ease;
       transition: all 0.4s ease; }
-    #sidebar #sub-menu-bar li:last-child .link {
-      border-bottom: 0; }
     #sidebar #sub-menu-bar li i {
       position: absolute;
       top: 16px;
