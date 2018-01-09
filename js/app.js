@@ -137,6 +137,7 @@ $(function() {
 
 				$('.main-menu').removeClass('active');
 				$(this).addClass('active');
+				$('#search').css("transform","translateX(0)");
 				injectSubMenu();
 				var accordion = new Accordion($('#sub-menu-bar'), true);
 				animasi($(this),$('#sub-menu-container'));
