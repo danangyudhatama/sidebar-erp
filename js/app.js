@@ -81,7 +81,6 @@ $(function() {
 	var accordion = new Accordion($('#sub-menu-bar'), true);
 
 
-	// onclick event main-menu
 	$('.main-menu').on('click', function() {
 
 		$('.main-menu').removeClass('active');
@@ -90,54 +89,101 @@ $(function() {
 		var accordion = new Accordion($('#sub-menu-bar'), true);
 		animasi($(this),$('#sub-menu-container'));
 	});
-
 	
-	var toggle = false;
+	var toggleFullHide = false;
+	var toggleHide = false;
 
-    $(".fa-window-minimize").click(function() {
-        toggle = !toggle;
+    // $(".fa-window-minimize").click(function() {
+    //     toggleFullHide = !toggleFullHide;
 
-        if(toggle){
-            $('#sidebar').animate({height: "10%"},"fast");
-            $('#menu').css('display', 'none');
-            $('#headbar, #search').css('height','50%');
-        }
-        else{
-            $('#sidebar').animate({height: "100%"},"fast");
-            $('#menu').css('display', '');
-            $('#headbar, #search').css('height','');
-        }
+    //     if(toggleFullHide){
+    //         $('#sidebar').animate({height: "10%"},"fast");
+    //         $('#menu').css('display', 'none');
+    //         $('#headbar, #search').css('height','50%');
+    //     }
+    //     else{
+    //         $('#sidebar').animate({height: "100%"},"fast");
+    //         $('#menu').css('display', '');
+    //         $('#headbar, #search').css('height','');
+    //     }
 
+    // });
+
+    $(".fa-bars").click(function() {
+    	toggleHide = !toggleHide;
+    	if (toggleHide) {
+	    	$('#headbar').hide();
+	    	$('#search').css("transform","translateX(-200%)");
+	    	$('#sidebar').css("background-color","transparent");
+	    	$('#headbar-hide').show();
+	    	hideSubMenuContainer();
+    	} else {
+    		$('#right-menu').show();
+    		$('#headbar').show();
+    		$('#search').css("transform","translateX(0)");
+			injectSubMenu();
+			var accordion = new Accordion($('#sub-menu-bar'), true);
+			animasi($('#main-menu-bar li:first-child'),$('#sub-menu-container'));
+    		$('#sidebar').css("background-color","#2F343D");
+    		$('#headbar-hide').hide();
+    	}
+		
+		//clear all event listener in main-menu button before attaching the new one
+		$('.main-menu').off(); 
+		// onclick event main-menu
+		if ($('#headbar').is(':visible')) {
+
+			$('.main-menu').on('click', function() {
+
+				$('.main-menu').removeClass('active');
+				$(this).addClass('active');
+				injectSubMenu();
+				var accordion = new Accordion($('#sub-menu-bar'), true);
+				animasi($(this),$('#sub-menu-container'));
+			});		
+		} else {
+			$('.main-menu').hover(
+				function(){
+					$('.main-menu').removeClass('active');
+					$(this).addClass('active');
+					injectSubMenu();
+					var accordion = new Accordion($('#sub-menu-bar'), true);
+					$('#search').css("transform","translateX(0)");
+					animasi($(this),$('#sub-menu-container'));
+				},function() {
+					$('#sidebar').hover(
+						function() {}, function() { 
+							$('#search').css("transform","translateX(-200%)");
+							hideSubMenuContainer();
+						});
+				});
+		}
     });
 
 
 
 });
 
-// onclick event minimize
-// $( ".fa-window-minimize" ).toggle(function() {
-//   alert( "First handler for .toggle() called." );
-// }, function() {
-//   alert( "Second handler for .toggle() called." );
-// });
-// $('.fa-window-minimize').toggle(function() {
-// 	$('#menu').css('display', 'hidden');
-// 	$('#sidebar').css('height','10%');
-// 	$('#header','#search').css('height','50%');
-// }, function() {
-// 	$('#menu').css('display', '');
-// 	$('#sidebar').css('height','');
-// 	$('#header','#search').css('height','');
-// });
-	
-const subMenu =  $('#sub-menu-container');	
-const subMenuWidth = subMenu.width();
+function hideSearchBar () {
+	$('#search').css("transform","translateX(-100%)");
+}
 
-
+function hideSubMenuContainer() {
+	$('#sub-menu-container').css({
+		"position": "absolute",
+		"top": 0,
+		"left": 0,
+		"margin-left": "-100%",
+		"width":  "70%",
+		"height": "47px",
+		"transition": "0s",
+	});
+}
 
 function animasi (mainMenu,subMenu) {
 	subMenu.finish();
 	var mainMenuPos = mainMenu.position();
+	var subMeneHeight = $('#right-menu').height() - $('#search').height();
 
 	
 	subMenu.css({
@@ -151,18 +197,16 @@ function animasi (mainMenu,subMenu) {
 	});
 
 
-	subMenu.animate(
-		{
+	subMenu.animate({
 		    "left": mainMenu.width(),
 		    "margin-left": "0",
 		    "height": "47px",
     	},250);
-
 	setTimeout(function(){
 		subMenu.animate({
-			"top": 0,
-			"height": "100%",
-		},250)
+			"top": $('#search').height(),
+			"height": subMeneHeight,
+		},250);
 	},125);
 
 }

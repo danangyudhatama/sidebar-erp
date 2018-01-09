@@ -82,8 +82,7 @@ $sidebar-width: 325px;
     justify-content: space-between;
     background-color: #15171B;
     color: white;
-    height: 5%;
-    max-height: 48px;
+    height:75px;
     width: 100%;
     text-align: center;
 
@@ -94,34 +93,29 @@ $sidebar-width: 325px;
     #control {
       display: flex;
       span {
-        margin: 10px;
+            font-size: 30px;
+            line-height: 75px;
+            color:white;
+            width: 75px;
+            height: 75px;
+            text-align: center;
+            vertical-align: bottom;
       }
     }
   }
 
-  #search {
-    position: relative;
-    display: flex;
-    justify-content: space-between;
-    width: 100%; 
-    height: 5%;
-    max-height: 48px;
-    font-size: 14px;
-    font-weight: 700;
-
-
-    .searchTerm {
-      height: 100%;
-      width: 84%;
-      padding: 5px;
-    }
-
-    .searchButton {
-      height: 100%;
-      width: 16%;
-      cursor: pointer; 
-    }
+  #headbar-hide {
+    display: none;
+    font-size: 30px;
+    line-height: 75px;
+    background-color:black;
+    color:white;
+    width: 75px;
+    height: 75px;
+    text-align: center;
+    vertical-align: bottom;
   }
+
 
   #menu {
     display: flex;
@@ -167,13 +161,44 @@ $sidebar-width: 325px;
     }
   }
 
+  #right-menu {
+    display: flex;
+    flex-direction: column;
+    width: 70%;
+    height: 100%;
+
+  }
+
+  #search {
+    position: relative;
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
+    height: 5%;
+    min-height: 35px;
+    font-size: 14px;
+    font-weight: 700;
+    z-index: 10;
+
+
+    .searchTerm {
+      height: 100%;
+      width: 84%;
+      padding: 5px;
+    }
+
+    .searchButton {
+      height: 100%;
+      width: 16%;
+      cursor: pointer; 
+    }
+  }
 
   #sub-menu-container {
     overflow-y: auto;
-    width: 70%;
-    height: 100%;
-    margin: 0 5% 0 0
-;
+    width: 100%;
+    height: 95%;
+    margin: 0 5% 0 0;
     margin-left: 0;
     background-color: #15171B;
     transition: 0.5s;
@@ -187,8 +212,7 @@ $sidebar-width: 325px;
 
   #sub-menu-bar {
     display: block;
-    width: 95%;
-    margin: 0 0 0 5%;
+    width: 100%;
     background: #FFF;
     
     .default .submenu {
