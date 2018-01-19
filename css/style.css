@@ -1,4 +1,4 @@
-html, body, #menu {
+html, body {
   position: relative;
   height: 100%;
   width: 100%;
@@ -15,6 +15,8 @@ html, body, #menu {
   min-width: 325px;
   max-width: 450px;
   background-color: #2F343D; }
+  #sidebar ::-webkit-scrollbar {
+    display: none; }
   #sidebar * {
     margin: 0;
     padding: 0;
@@ -60,7 +62,8 @@ html, body, #menu {
     color: white;
     height: 75px;
     width: 100%;
-    text-align: center; }
+    text-align: center;
+    z-index: 10; }
     #sidebar #headbar #title {
       margin: 0 10px; }
     #sidebar #headbar #control {
@@ -75,17 +78,32 @@ html, body, #menu {
         vertical-align: bottom; }
   #sidebar #headbar-hide {
     display: none;
+    flex-direction: column;
     font-size: 30px;
     line-height: 75px;
     background-color: black;
     color: white;
     width: 75px;
-    height: 75px;
+    height: 150px;
     text-align: center;
-    vertical-align: bottom; }
+    vertical-align: bottom;
+    z-index: 10; }
+    #sidebar #headbar-hide #full-hide, #sidebar #headbar-hide #half-hide {
+      width: 100%;
+      height: 50%; }
+      #sidebar #headbar-hide #full-hide i, #sidebar #headbar-hide #half-hide i {
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease; }
+      #sidebar #headbar-hide #full-hide.hidden i.fa-chevron-left, #sidebar #headbar-hide #half-hide.hidden i.fa-chevron-left {
+        -webkit-transform: rotate(180deg);
+        -ms-transform: rotate(180deg);
+        -o-transform: rotate(180deg);
+        transform: rotate(180deg); }
   #sidebar #menu {
     display: flex;
-    align-content: flex-end; }
+    align-content: flex-end;
+    height: calc(100% - 75px); }
   #sidebar #main-menu-bar {
     width: 25%;
     height: 100%;
@@ -96,8 +114,7 @@ html, body, #menu {
     z-index: 10; }
     #sidebar #main-menu-bar .main-menu {
       width: 100%;
-      height: 100%;
-      max-width: 75px;
+      height: 75px;
       max-height: 75px;
       border: 1px solid #646464; }
       #sidebar #main-menu-bar .main-menu a {
@@ -109,7 +126,8 @@ html, body, #menu {
       border-bottom-width: 1px; }
     #sidebar #main-menu-bar .active {
       background-color: #15171B;
-      border: 1px;
+      border-right-width: 1px;
+      border-right-color: black;
       color: black; }
   #sidebar #right-menu {
     display: flex;
@@ -119,25 +137,30 @@ html, body, #menu {
   #sidebar #search {
     position: relative;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     height: 5%;
     min-height: 35px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
-    z-index: 10; }
+    z-index: 10;
+    margin: 10px; }
     #sidebar #search .searchTerm {
       height: 100%;
-      width: 84%;
-      padding: 5px; }
-    #sidebar #search .searchButton {
-      height: 100%;
-      width: 16%;
-      cursor: pointer; }
+      width: 100%;
+      padding: 5px;
+      background: #fcfcfc;
+      border: 1px solid #aaa;
+      box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset; }
+    #sidebar #search .searchIcon {
+      position: absolute;
+      right: 5%;
+      top: 8px; }
   #sidebar #sub-menu-container {
-    overflow-y: auto;
-    width: 100%;
-    height: 95%;
+    position: absolute;
+    top: 150px;
+    left: 75px;
+    margin-left: 0px;
+    width: 70%;
+    height: calc(100% - 150px);
     margin: 0 5% 0 0;
     margin-left: 0;
     background-color: #15171B;

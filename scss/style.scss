@@ -1,4 +1,4 @@
-html, body, #menu {
+html, body {
   position: relative;
   height: 100%;
   width: 100%;
@@ -18,6 +18,10 @@ $sidebar-width: 325px;
   min-width: $sidebar-width;
   max-width: 450px;
   background-color: #2F343D;
+
+  ::-webkit-scrollbar {
+    display: none;
+  }
 
   * {
     margin: 0;
@@ -85,6 +89,7 @@ $sidebar-width: 325px;
     height:75px;
     width: 100%;
     text-align: center;
+    z-index: 10;
 
     #title {
       margin: 0 10px;
@@ -106,21 +111,43 @@ $sidebar-width: 325px;
 
   #headbar-hide {
     display: none;
+    flex-direction: column;
     font-size: 30px;
     line-height: 75px;
     background-color:black;
     color:white;
     width: 75px;
-    height: 75px;
+    height:150px;
     text-align: center;
     vertical-align: bottom;
-  }
+    z-index: 10;
 
+    #full-hide, #half-hide {
+      width: 100%;
+      height: 50%;
+
+      i {
+        -webkit-transition: all 0.4s ease;
+        -o-transition: all 0.4s ease;
+        transition: all 0.4s ease;
+      }
+
+      &.hidden i {
+
+        &.fa-chevron-left {
+          -webkit-transform: rotate(180deg);
+          -ms-transform: rotate(180deg);
+          -o-transform: rotate(180deg);
+          transform: rotate(180deg);
+        }
+      }
+    }
+  }
 
   #menu {
     display: flex;
     align-content: flex-end;
-
+    height: calc(100% - 75px);
   }
 
   #main-menu-bar {
@@ -131,13 +158,13 @@ $sidebar-width: 325px;
     background-color: #15171B;
     overflow-y: auto;
     z-index: 10;
-
+  
     .main-menu {
       width: 100%;
-      height: 100%;
-      max-width: 75px;
+      height: 75px;
       max-height: 75px;
       border: 1px solid #646464;
+
       a {
         color: white;
 
@@ -155,10 +182,11 @@ $sidebar-width: 325px;
     
     .active {
       background-color: #15171B;
-      border: 1px;
+      border-right-width: 1px;
+      border-right-color: black;
       color: black;
-
     }
+
   }
 
   #right-menu {
@@ -166,38 +194,44 @@ $sidebar-width: 325px;
     flex-direction: column;
     width: 70%;
     height: 100%;
-
-  }
+    }
 
   #search {
     position: relative;
     width: 100%;
-    display: flex;
-    justify-content: space-between;
     height: 5%;
     min-height: 35px;
-    font-size: 14px;
+    font-size: 16px;
     font-weight: 700;
     z-index: 10;
+    margin: 10px;
+
+
 
 
     .searchTerm {
       height: 100%;
-      width: 84%;
+      width: 100%;
       padding: 5px;
+      background: #fcfcfc;
+      border: 1px solid #aaa;
+      box-shadow: 0 0 3px #ccc, 0 10px 15px #ebebeb inset;
     }
 
-    .searchButton {
-      height: 100%;
-      width: 16%;
-      cursor: pointer; 
+    .searchIcon {
+      position: absolute;
+      right: 5%;
+      top: 8px;
     }
   }
 
   #sub-menu-container {
-    overflow-y: auto;
-    width: 100%;
-    height: 95%;
+    position: absolute;
+    top: 150px;
+    left: 75px;
+    margin-left: 0px;
+    width: 70%;
+    height: calc(100% - 150px);
     margin: 0 5% 0 0;
     margin-left: 0;
     background-color: #15171B;
