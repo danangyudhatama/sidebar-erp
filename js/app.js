@@ -3,46 +3,49 @@ function injectSubMenu() {
 	$('#sub-menu-bar').empty().append(`
 
 		<li class="default open">
-            <div class="link"><i class="fa fa-paint-brush"></i>Disasdaeño web<i class="fa fa-chevron-down"></i></div>
+            <div class="link">Submenu-Head<i class="fa fa-chevron-down"></i></div>
             <ul class="submenu">
-                <li><a href="#">Photasdoshop</a></li>
-                <li><a href="#">HTML</a></li>
-                <li><a href="#">CSS</a></li>
-                <li><a href="#">Maquetacion web</a></li>
+                <li><a href="#">Child sub-menu</a></li>
+                <li><a href="#">Child sub-menu</a></li>
+                <li><a href="#">Child sub-menu</a></li>
+                <li><a href="#">Child sub-menu</a></li>
             </ul>
         </li>
-        <li>
-	        <div class="link"><i class="fa fa-code"></i>Desarrollo front-end<i class="fa fa-chevron-down"></i></div>
-	        <ul class="submenu">
-	            <li><a href="#">Javascript</a></li>
-	            <li><a href="#">jQuery</a></li>
-	            <li><a href="#">Frameworks javascript</a></li>
-	        </ul>
+        <li class="default open">
+	        <div class="link">Submenu-Head<i class="fa fa-chevron-down"></i></div>
+			<ul class="submenu">
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+			</ul>
 	    </li>
-	    <li>
-	        <div class="link"><i class="fa fa-mobile"></i>Diseño responsive<i class="fa fa-chevron-down"></i></div>
-	        <ul class="submenu">
-	            <li><a href="#">Tablets</a></li>
-	            <li><a href="#">Dispositivos mobiles</a></li>
-	            <li><a href="#">Medios de escritorio</a></li>
-	            <li><a href="#">Otros dispositivos</a></li>
-	        </ul>
+	    <li class="default open">
+	        <div class="link">Submenu-Head<i class="fa fa-chevron-down"></i></div>
+			<ul class="submenu">
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+			</ul>
 	    </li>
-	    <li><div class="link"><i class="fa fa-globe"></i>Posicionamiento web<i class="fa fa-chevron-down"></i></div>
-	        <ul class="submenu">
-	            <li><a href="#">Google</a></li>
-	            <li><a href="#">Bing</a></li>
-	            <li><a href="#">Yahoo</a></li>
-	            <li><a href="#">Otros buscadores</a></li>
-	        </ul>
+		<li class="default open">
+			<div class="link">Submenu-Head<i class="fa fa-chevron-down"></i></div>
+			<ul class="submenu">
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+			</ul>
 	    </li>
-	    <li><div class="link"><i class="fa fa-globe"></i>Posicionamiento web<i class="fa fa-chevron-down"></i></div>
-	        <ul class="submenu">
-	            <li><a href="#">Google</a></li>
-	            <li><a href="#">Bing</a></li>
-	            <li><a href="#">Yahoo</a></li>
-	            <li><a href="#">Otros buscadores</a></li>
-	        </ul>
+		<li class="default open">
+			<div class="link">Submenu-Head<i class="fa fa-chevron-down"></i></div>
+			<ul class="submenu">
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+				<li><a href="#">Child sub-menu</a></li>
+			</ul>
 	    </li>
 
 
@@ -53,6 +56,8 @@ function injectSubMenu() {
 // submenu accordion-like class
 
 $(function() {
+
+	injectItem();
 	var Accordion = function(el, multiple) {
 		this.el = el || {};
 		this.multiple = multiple || false;
@@ -86,6 +91,7 @@ $(function() {
 		$('.main-menu').removeClass('active');
 		$(this).addClass('active');
 		injectSubMenu();
+		showSearchBar();
 		var accordion = new Accordion($('#sub-menu-bar'), true);
 		animasi($(this),$('#sub-menu-container'));
 	});
@@ -93,128 +99,202 @@ $(function() {
 	var toggleFullHide = false;
 	var toggleHide = false;
 
-	$("#full-hide").click(function() {
-		toggleFullHide = !toggleFullHide;
-		if(toggleFullHide) {
-			$('#menu').hide();
-			$('#full-hide').addClass('hidden');
-		} else {
+	$("#hide").click(function() {
+
+		if (toggleFullHide) {
 			$('#menu').show();
-			$('#full-hide').removeClass('hidden');
+			$('#hide').removeClass('hidden');
+			halfHide();
+		} else {
+			fullHide();
+			if (toggleHide == false) {
+				toggleHide = !toggleHide;
+			}
 		}
+		toggleFullHide = !toggleFullHide;
 	});
 
-    $(".fa-bars, .fa-times").click(function() {
-    	toggleHide = !toggleHide;
-    	if (toggleHide) {
-	    	$('#headbar').hide();
-	    	$('#search').css("transform","translateX(-300%)");
-	    	$('#sidebar').css("background-color","transparent");
-	    	$('#headbar-hide').css("display","flex");
-	    	$('#menu').css('height','calc(100% - 150px)');
-	    	hideSubMenuContainer();
-    	} else {
-    		$('#right-menu').show();
-    		$('#headbar').show();
-    		$('#sidebar').show();
-    		$('#menu').show();
-    		$('#search').css("transform","translateX(0)");
-    		$('#sub-menu-container').css("transform","translateY(0)");
+  $("#control").click(function() {
+	toggleHide = !toggleHide;
+		$(document).off();
+  	if (toggleHide) {
+			halfHide();
+  	} else {
+			$('#title').css("position","relative");
+			$('#title').css("margin-left","0px");
+    	$('#right-menu').show();
+			$('#headbar').show();
+			$('#headbar').css("width","100%");
+    	$('#sidebar').show();
+    	$('#menu').show();
+			$('#search').css("transform","translateX(0)");
+			$('#search').css("margin-top","0px");
+			$('#sub-menu-container').css("transform","translateY(0)");
+			$('#sub-menu-container').css("margin-top","0px");
 			injectSubMenu();
+			$('.fa-chevron-left').css('color','white');
+			$('.fa-chevron-left').css('background-color','rgb(47, 52, 61)');
+
+			$('#a').removeClass('fa fa-bars');
+			$('#a').addClass('fa fa-times');
 			var accordion = new Accordion($('#sub-menu-bar'), true);
-			animasi($('#main-menu-bar li:first-child'),$('#sub-menu-container'), false);
-    		$('#sidebar').css("background-color","#2F343D");
-    		$('#headbar-hide').hide();
-    	}
-		
+			animasi($('#main-menu-bar li:first-child'),$('#sub-menu-container'));
+  		$('#sidebar').css("background-color","#2F343D");
+  		$('#headbar-hide').hide();
+  	}
+	
 		//clear all event listener in main-menu button before attaching the new one
 		$('.main-menu, #sidebar').off();
-		// onclick event main-menu
-		if ($('#headbar').is(':visible')) {
+		// apabila dalam keadaan default
 
-			$('.main-menu').on('click', function() {
+		$('.main-menu').on('click', function() {
+			$('.main-menu').removeClass('active');
+			$(this).addClass('active');
+			$('#search').css("transform","translateX(0)");
+			$('#sub-menu-container').css("transform","translateY(0)");
+			injectSubMenu();
+			var accordion = new Accordion($('#sub-menu-bar'), true);
+			animasi($(this),$('#sub-menu-container'));
+		});
 
-				$('.main-menu').removeClass('active');
-				$(this).addClass('active');
-				$('#search').css("transform","translateX(0)");
-				$('#sub-menu-container').css("transform","translateY(0)");
-				injectSubMenu();
-				var accordion = new Accordion($('#sub-menu-bar'), true);
-				animasi($(this),$('#sub-menu-container'), false);
-			});		
-		} else {
-
-			$('.main-menu').hover(
-				function(){
-					$('.main-menu').removeClass('active');
-					$(this).addClass('active');
-					injectSubMenu();
-					var accordion = new Accordion($('#sub-menu-bar'), true);
-					$('#search').css("transform","translateX(0)");
-					$('#search').css("transform","translateY(-150px)");
-					$('#sub-menu-container').css("transform","translateY(-75px)");					
-					animasi($(this),$('#sub-menu-container'), true);
-				},function() {
-					$('#sidebar').hover(
-						function() {}, function() { 
-							$('#search').css("transform","translateX(-200%)");
-							hideSubMenuContainer();
-						});
-				});
-		}
-    });
-
-
-
+	});
 });
 
+
 function hideSearchBar () {
-	$('#search').css("transform","translateX(-100%)");
+	$('#search').css("transform","translateX(-300%)");
 }
 
-function hideSubMenuContainer() {
+function showSearchBar () {
+	$('#search').css("transform","translateX(0)");
+}
+
+function halfHide() {
 	$('#sub-menu-container').css({
 		"position": "absolute",
 		"top": 0,
 		"left": 0,
 		"margin-left": "-100%",
-		"width":  "70%",
+		"width":  "100%",
 		"height": "47px",
-		"transition": "0s",
+		"transition": "0s"
+	});
+	$('.fa-chevron-left').css('color','black');
+	$('.fa-chevron-left').css('background-color','white');
+	$('#title').hide();
+	$('#title').css("position","absolute");
+	$('#title').css("margin-left","-900px");
+	$('#headbar').css("width","23%");
+	$('#search').css("transform","translateX(-300%)");
+	$('#sidebar').css("background-color","transparent");
+	$('#a').addClass('fa fa-bars');
+	$(document).on('click', function(event) {
+		if (!$(event.target).closest("#sidebar").length) {
+    	fullHide();
+		}
 	});
 }
 
-function animasi (mainMenu, subMenu, hide) {
+function animasi (mainMenu, subMenu) {
 	subMenu.finish();
 	var mainMenuPos = mainMenu.position();
-	subMenuHeight = $('#sidebar').height();
-	if (hide) {
-		subMenuHeight = subMenuHeight - 75;
-	} else {
-		subMenuHeight = subMenuHeight - 150; 
-	}
+	subMenuHeight = $('#sidebar').height() - 100;
 	
 	subMenu.css({
 		"position": "absolute",
 		"top": mainMenuPos.top,
 		"left": mainMenuPos.left,
+		"right": "-17",
 		"margin-left": "-100%",
-		"width":  "70%",
+		"width": "calc(100% + 17px)",
 		"height": "47px",
 		"transition": "0s",
 	});
 
 
 	subMenu.animate({
-		    "left": "75px",
+		    "left": "0",
+		    "right": "-17",
 		    "margin-left": "0",
 		    "height": "47px",
     	},250);
+
 	setTimeout(function(){
 		subMenu.animate({
-			"top": 150,
+			"top":"50",
+	    "left": "0",
+	    "right": "-17",
+	    "margin-left": "0",
+	    "width": "calc(100% + 17px)",
 			"height": subMenuHeight,
 		},250);
 	},125);
 
+}
+
+function fullHide(){
+	$('#menu').hide();
+	$('#hide').addClass('hidden');
+	halfHide();
+	hideSearchBar();
+}
+
+function injectItem() {
+    // Declare variables
+
+    var menuList, i;
+    var listSingkatan = [];
+    var subMenuItem = [];
+    
+
+    //menuList = $(".submenu li"); 
+    menuList = {
+    	"singkatan1" : "kepanjsadangan1",
+    	"singkatan2" : "kepanjangan2",
+    	"singkatan3" : "kepanjangan3",
+    	"singkatan4" : "kepanjagasdngan4",
+    	"singkatan5" : "kepanjangan5",
+    	"singkatan6" : "kepanjaasdngan6",
+    	"singkatan7" : "kepanjangan7",
+    	"singkatan8" : "kepanjangan8",
+    	"singkatan9" : "kepanjaasdngan9"
+    };
+
+
+    // Loop through all list items, and hide those who don't match the search query
+    for (var list in menuList) {
+    	listSingkatan.push(list);
+    	subMenuItem.push(menuList[list]);
+    }
+    $('input#searchInput').keyup(function() {
+    	if ($('input#searchInput').val().length == 1){
+	    	$('#sub-menu-bar').empty();
+	    	$('#sub-menu-bar').append(`<ul class="submenu"></ul>`);
+		    for (i = 0; i < subMenuItem.length; i++) {
+		    	$('.submenu').append(
+		    		`<li><a href="#">${subMenuItem[i]}</a></li>`);
+		    }
+		    filter();
+	    }
+	    if ($('input#searchInput').val() == ""){
+	    	injectSubMenu();
+	    }  	
+    });
+
+}
+
+function filter() {
+    var input, filter, a, i;
+	  input = document.getElementById('searchInput');
+    filter = input.value.toUpperCase();
+
+		var items = $('.submenu li');
+    for (i = 0; i < items.length; i++) {
+        a = items[i].getElementsByTagName("a")[0];
+        if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
+            items[i].style.display = "";
+        } else {
+            items[i].style.display = "none";
+        }
+    }
 }
