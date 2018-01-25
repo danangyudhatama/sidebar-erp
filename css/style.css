@@ -6,9 +6,13 @@ html, body
   margin: 0; 
 }
 
+#main-menu-bar ::-webkit-scrollbar { 
+  display: none; 
+}
+
 #sidebar 
 {
-  position: fixed;
+  position: relative;
   display: flex;
   flex-direction: column;
   bottom: 0;
@@ -41,8 +45,6 @@ html, body
   font-size: 12px;
   font-family: 'Acme', sans-serif;
 }
-
-
 
 
 #sidebar * 
@@ -353,7 +355,7 @@ html, body
   color: #b63b4d; }
   #sidebar #sub-menu-bar li.open i.fa-chevron-down {
     -webkit-transform: rotate(180deg);
-    -ms-transform: rotate(180deg);
+    -moz-transform: rotate(180deg);
     -o-transform: rotate(180deg);
     transform: rotate(180deg); 
 }

@@ -53,8 +53,9 @@ function injectSubMenu() {
 
 }
 
-// submenu accordion-like class
+//**----  START :: BAGIAN FUNGSI DARI BERBAGAI ELEMENT ----**//
 
+//Submenu accordion-like class
 $(function() {
 
 	injectItem();
@@ -82,7 +83,6 @@ $(function() {
 	}	
 
 	// menentukan element yang menggunakan class Accordion
-
 	var accordion = new Accordion($('#sub-menu-bar'), true);
 
 
@@ -96,17 +96,23 @@ $(function() {
 		animasi($(this),$('#sub-menu-container'));
 	});
 	
+
+	//Deklarasi variabel toggle menu
 	var toggleFullHide = false;
 	var toggleHide = false;
 
+	$("#hide").css("cursor","pointer");
 	$("#hide").click(function() {
-
 		if (toggleFullHide) {
 			$('#menu').show();
 			$('#hide').removeClass('hidden');
 			halfHide();
+			$('#b').removeClass('fa fa-eye');
+			$('#b').addClass('fa fa-eye-slash');
 		} else {
 			fullHide();
+			$('#b').removeClass('fa fa-eye-slash');
+			$('#b').addClass('fa fa-eye');
 			if (toggleHide == false) {
 				toggleHide = !toggleHide;
 			}
@@ -114,39 +120,42 @@ $(function() {
 		toggleFullHide = !toggleFullHide;
 	});
 
-  $("#control").click(function() {
-	toggleHide = !toggleHide;
-		$(document).off();
-  	if (toggleHide) {
+
+		$("#control").css("cursor","pointer");
+  		$("#control").click(function() {
+			toggleHide = !toggleHide;
+			$(document).off();
+  		if (toggleHide) {
 			halfHide();
-  	} else {
+  		} else {
 			$('#title').css("position","relative");
 			$('#title').css("margin-left","0px");
-    	$('#right-menu').show();
+    		$('#right-menu').show();
 			$('#headbar').show();
 			$('#headbar').css("width","100%");
-    	$('#sidebar').show();
-    	$('#menu').show();
+    		$('#sidebar').show();
+    		$('#menu').show();
 			$('#search').css("transform","translateX(0)");
 			$('#search').css("margin-top","0px");
 			$('#sub-menu-container').css("transform","translateY(0)");
 			$('#sub-menu-container').css("margin-top","0px");
 			injectSubMenu();
-			$('.fa-chevron-left').css('color','white');
-			$('.fa-chevron-left').css('background-color','rgb(47, 52, 61)');
-
+			$('.fa-eye-slash').css('color','#fff');
+			$('.fa-eye-slash').css('background-color','rgb(47, 52, 61)');
+			$('.fa-eye').css('color','#fff');
+			$('.fa-eye').css('background-color','rgb(47, 52, 61)');
 			$('#a').removeClass('fa fa-bars');
 			$('#a').addClass('fa fa-times');
 			var accordion = new Accordion($('#sub-menu-bar'), true);
 			animasi($('#main-menu-bar li:first-child'),$('#sub-menu-container'));
-  		$('#sidebar').css("background-color","#2F343D");
-  		$('#headbar-hide').hide();
-  	}
+  			$('#sidebar').css("background-color","#2F343D");
+  			$('#headbar-hide').hide();
+  		}
 	
-		//clear all event listener in main-menu button before attaching the new one
+		//Bersihkan semua event listener di tombol menu utama sebelum melampirkan yang baru
 		$('.main-menu, #sidebar').off();
+		
 		// apabila dalam keadaan default
-
 		$('.main-menu').on('click', function() {
 			$('.main-menu').removeClass('active');
 			$(this).addClass('active');
@@ -161,15 +170,26 @@ $(function() {
 });
 
 
+
+//START :: Fungsi sembunyikan searchbar
 function hideSearchBar () {
 	$('#search').css("transform","translateX(-300%)");
 }
+//END :: Fungsi sembunyikan searchbar
 
+
+
+//START :: Fungsi memunculkan searchbar
 function showSearchBar () {
 	$('#search').css("transform","translateX(0)");
 }
+//END :: Fungsi memunculkan searchbar
 
+
+
+//START :: Fungsi setengah hide
 function halfHide() {
+	//Sub-menu-container
 	$('#sub-menu-container').css({
 		"position": "absolute",
 		"top": 0,
@@ -179,8 +199,12 @@ function halfHide() {
 		"height": "47px",
 		"transition": "0s"
 	});
-	$('.fa-chevron-left').css('color','black');
-	$('.fa-chevron-left').css('background-color','white');
+
+	$('#hide').show();
+	$('.fa-eye-slash').css('color','#000');
+	$('.fa-eye-slash').css('background-color','#fff');
+	$('.fa-eye').css('color','#000');
+	$('.fa-eye').css('background-color','#fff');
 	$('#title').hide();
 	$('#title').css("position","absolute");
 	$('#title').css("margin-left","-900px");
@@ -188,13 +212,19 @@ function halfHide() {
 	$('#search').css("transform","translateX(-300%)");
 	$('#sidebar').css("background-color","transparent");
 	$('#a').addClass('fa fa-bars');
+
 	$(document).on('click', function(event) {
 		if (!$(event.target).closest("#sidebar").length) {
-    	fullHide();
+    	halfHide();
 		}
 	});
 }
+//END :: Fungsi setengah hide
 
+
+
+
+//START :: Fungsi animasi
 function animasi (mainMenu, subMenu) {
 	subMenu.finish();
 	var mainMenuPos = mainMenu.position();
@@ -231,23 +261,34 @@ function animasi (mainMenu, subMenu) {
 	},125);
 
 }
+//END :: Fungsi animasi
 
+
+
+
+//START :: Fungsi sembunyi keseluruhan
 function fullHide(){
 	$('#menu').hide();
 	$('#hide').addClass('hidden');
 	halfHide();
 	hideSearchBar();
 }
+//END :: Fungsi sembunyi keseluruhan
 
+
+
+
+//START :: Fungsi Inject per item
 function injectItem() {
-    // Declare variables
-
+	
+	//START :: Deklarasi variables
     var menuList, i;
     var listSingkatan = [];
     var subMenuItem = [];
     
 
-    //menuList = $(".submenu li"); 
+	//START :: menuList = $(".submenu li"); 
+	//Jika ada penambahan menu bisa memasukkan key didalam menuList
     menuList = {
     	"singkatan1" : "kepanjsadangan1",
     	"singkatan2" : "kepanjangan2",
@@ -258,14 +299,17 @@ function injectItem() {
     	"singkatan7" : "kepanjangan7",
     	"singkatan8" : "kepanjangan8",
     	"singkatan9" : "kepanjaasdngan9"
-    };
+	};
+	//END :: menuList = $(".submenu li"); 
 
 
-    // Loop through all list items, and hide those who don't match the search query
+    //START :: Loop through all list items, and hide those who don't match the search query
     for (var list in menuList) {
     	listSingkatan.push(list);
     	subMenuItem.push(menuList[list]);
-    }
+	}
+	//END :: Looping
+
     $('input#searchInput').keyup(function() {
     	if ($('input#searchInput').val().length == 1){
 	    	$('#sub-menu-bar').empty();
@@ -280,9 +324,13 @@ function injectItem() {
 	    	injectSubMenu();
 	    }  	
     });
-
 }
+//END :: Fungsi Inject per item
 
+
+
+
+//START :: Fungsi filter key
 function filter() {
     var input, filter, a, i;
 	  input = document.getElementById('searchInput');
@@ -298,3 +346,6 @@ function filter() {
         }
     }
 }
+//END :: Fungsi filter key
+
+//**----  END :: BAGIAN FUNGSI DARI BERBAGAI ELEMENT ----**//
