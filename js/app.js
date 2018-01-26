@@ -276,8 +276,6 @@ function fullHide(){
 //END :: Fungsi sembunyi keseluruhan
 
 
-
-
 //START :: Fungsi Inject per item
 function injectItem() {
 	
@@ -290,15 +288,17 @@ function injectItem() {
 	//START :: menuList = $(".submenu li"); 
 	//Jika ada penambahan menu bisa memasukkan key didalam menuList
     menuList = {
-    	"singkatan1" : "kepanjsadangan1",
-    	"singkatan2" : "kepanjangan2",
-    	"singkatan3" : "kepanjangan3",
-    	"singkatan4" : "kepanjagasdngan4",
-    	"singkatan5" : "kepanjangan5",
-    	"singkatan6" : "kepanjaasdngan6",
-    	"singkatan7" : "kepanjangan7",
-    	"singkatan8" : "kepanjangan8",
-    	"singkatan9" : "kepanjaasdngan9"
+    	"Inventory"  : "pencarian abc 1",
+    	"singkatan2" : "pencarian def 2",
+    	"singkatan3" : "pencarian ghi 3",
+    	"singkatan4" : "pencarian jkl 4",
+    	"singkatan5" : "pencarian mno 5",
+    	"singkatan6" : "pencarian pq 6",
+    	"singkatan7" : "pencarian rs 7",
+    	"singkatan8" : "pencarian tu 8",
+		"singkatan9" : "pencarian v9",
+		"singkatan9" : "pencarian wxyz 10",
+		"singkatan9" : "!!"
 	};
 	//END :: menuList = $(".submenu li"); 
 
@@ -309,20 +309,23 @@ function injectItem() {
     	subMenuItem.push(menuList[list]);
 	}
 	//END :: Looping
-
     $('input#searchInput').keyup(function() {
     	if ($('input#searchInput').val().length == 1){
-	    	$('#sub-menu-bar').empty();
-	    	$('#sub-menu-bar').append(`<ul class="submenu"></ul>`);
+			
+			$('#sub-menu-bar').empty();
+			$('#sub-menu-bar').append(`<ul class="submenu"></ul>`);
+
 		    for (i = 0; i < subMenuItem.length; i++) {
 		    	$('.submenu').append(
-		    		`<li><a href="#">${subMenuItem[i]}</a></li>`);
+					`<li><a href="#">${subMenuItem[i]}</a></li>`
+				);
 		    }
-		    filter();
-	    }
+			filter();
+		} 
+		
 	    if ($('input#searchInput').val() == ""){
-	    	injectSubMenu();
-	    }  	
+			injectSubMenu();
+		}
     });
 }
 //END :: Fungsi Inject per item
@@ -333,16 +336,16 @@ function injectItem() {
 //START :: Fungsi filter key
 function filter() {
     var input, filter, a, i;
-	  input = document.getElementById('searchInput');
+	input = document.getElementById('searchInput');
     filter = input.value.toUpperCase();
 
-		var items = $('.submenu li');
+	var items = $('.submenu li');
     for (i = 0; i < items.length; i++) {
         a = items[i].getElementsByTagName("a")[0];
         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
-            items[i].style.display = "";
+			items[i].style.display = "background-color:red;";
         } else {
-            items[i].style.display = "none";
+			items[i].style.display = "none";
         }
     }
 }

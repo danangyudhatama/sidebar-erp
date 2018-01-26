@@ -283,11 +283,22 @@ html, body
   top: 50px;
   width: calc(100% + 17px);
   height: calc(100% - 50px);
-  background-color: #15171B;
+  background-color: #fff;
   transition: 0.5s;
   z-index: 5; 
   overflow-y: scroll;
   right: -17px;
+}
+
+#sidebar #not-found
+{
+  position: absolute;
+  background-image: url('../robo.jpg');
+  background-size: 100%;
+  background-repeat: no-repeat;
+  width: calc(100% + 17px);
+  height: calc(100% - 50px);
+  margin-top: 80px;
 }
 
 #sidebar #sub-menu-container.animate 
