@@ -87,7 +87,9 @@ $(function() {
 
 
 	$('.main-menu').on('click', function() {
-
+		 if ($(':animated').length) {
+		        return false;
+		    }
 		$('.main-menu').removeClass('active');
 		$(this).addClass('active');
 		injectSubMenu();
@@ -103,6 +105,9 @@ $(function() {
 
 	$("#hide").css("cursor","pointer");
 	$("#hide").click(function() {
+		if ($(':animated').length) {
+	        return false;
+	    }
 		if (toggleFullHide) {
 			$('#menu').show();
 			$('#hide').removeClass('hidden');
@@ -123,6 +128,9 @@ $(function() {
 
 		$("#control").css("cursor","pointer");
   		$("#control").click(function() {
+  			if ($(':animated').length) {
+		        return false;
+		    }
 			toggleHide = !toggleHide;
 			$(document).off();
   		if (toggleHide) {
@@ -157,6 +165,9 @@ $(function() {
 		
 		// apabila dalam keadaan default
 		$('.main-menu').on('click', function() {
+			if ($(':animated').length) {
+		        return false;
+		    }
 			$('.main-menu').removeClass('active');
 			$(this).addClass('active');
 			$('#search').css("transform","translateX(0)");
