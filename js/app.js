@@ -356,7 +356,7 @@ function injectItem() {
 //START :: Fungsi filter key
 function filter() {
     var input, filter, a, i;
-    var b= [];
+    var b = [];
 	input = document.getElementById('searchInput');
     filter = input.value.toUpperCase();
 

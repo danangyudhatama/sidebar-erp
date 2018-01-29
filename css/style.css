@@ -112,7 +112,7 @@ html, body
 #sidebar .button:hover
 {
   color: #fff;
-  background-color: #b63b4d;
+  background-color: #21b384;
   border-color: #0062cc; 
 }
 
@@ -375,7 +375,7 @@ html, body
 
 #sidebar #sub-menu-bar li.open i 
 {
-  color: #b63b4d; }
+  color: #fff; }
   #sidebar #sub-menu-bar li.open i.fa-chevron-down {
     -webkit-transform: rotate(180deg);
     -moz-transform: rotate(180deg);
@@ -404,6 +404,7 @@ html, body
   color: #000;
   padding: 12px;
   padding-left: 42px;
+  
   -webkit-transition: all 0.25s ease;
   -o-transition: all 0.25s ease;
   transition: all 0.25s ease; 
@@ -411,7 +412,7 @@ html, body
 
 #sidebar #sub-menu-bar li .submenu a:hover 
 {
-  background: #b63b4d;
+  background: #21b384;
   color: #FFF; 
 }
 
@@ -450,6 +451,6 @@ html, body
 
 #sidebar .submenu a:hover 
 {
-  background: #b63b4d;
+  background: #21b384;
   color: #FFF; 
 }
