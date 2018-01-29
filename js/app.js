@@ -366,7 +366,7 @@ function filter() {
 
         if($('.submenu li:visible').length == 0) {
         	if ($('#sub-menu-bar').find('img').length == 0)
-        	$('#sub-menu-bar').prepend('<img id="theImg" src="robo.jpg" height="110" width="220"/>');
+			$('#sub-menu-bar').prepend('<img id="theImg" src="bobo-404.gif"/></p>');
         }
     }
 

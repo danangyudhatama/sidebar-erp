@@ -6,6 +6,16 @@ html, body
   margin: 0; 
 }
 
+#theImg{
+  background-color: #fff;
+  border: none;
+  top: 200px;
+  position: absolute;
+  width: 100%;
+  background-repeat: no-repeat;
+  background-size: cover;
+}
+
 #main-menu-bar ::-webkit-scrollbar { 
   display: none; 
 }
