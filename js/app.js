@@ -329,6 +329,25 @@ function injectItem() {
     	subMenuItem.push(menuList[list]);
 	}
 	//END :: Looping
+    $('input#searchInput').keypress(function() {
+    	if ($('input#searchInput').val().length == 1){
+			
+			$('#sub-menu-bar').empty();
+			$('#sub-menu-bar').append(`<ul class="submenu"></ul>`);
+
+		    for (i = 0; i < subMenuItem.length; i++) {
+		    	$('.submenu').append(
+					`<li><a href="#" value="${listSingkatan[i]}">${subMenuItem[i]}</a></li>`
+				);
+		    }
+			filter();
+		} 
+		
+	    if ($('input#searchInput').val() == ""){
+			injectSubMenu();
+		}
+    });
+
     $('input#searchInput').keyup(function() {
     	if ($('input#searchInput').val().length == 1){
 			
