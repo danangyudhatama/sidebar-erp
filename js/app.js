@@ -104,6 +104,7 @@ $(function() {
 	var toggleHide = false;
 
 	$("#hide").css("cursor","pointer");
+	$("#hide").css("margin-left","-100px;");
 	$("#hide").click(function() {
 		if ($(':animated').length) {
 	        return false;
@@ -112,12 +113,12 @@ $(function() {
 			$('#menu').show();
 			$('#hide').removeClass('hidden');
 			halfHide();
-			$('#b').removeClass('fa fa-eye');
-			$('#b').addClass('fa fa-eye-slash');
+			$('#b').removeClass('fa fa-play');
+			$('#b').addClass('fa fa-play');
 		} else {
 			fullHide();
-			$('#b').removeClass('fa fa-eye-slash');
-			$('#b').addClass('fa fa-eye');
+			$('#b').removeClass('fa fa-play');
+			$('#b').addClass('fa fa-play');
 			if (toggleHide == false) {
 				toggleHide = !toggleHide;
 			}
@@ -133,6 +134,7 @@ $(function() {
 		    }
 			toggleHide = !toggleHide;
 			$(document).off();
+		//Jika Toogle tidak hide
   		if (toggleHide) {
 			halfHide();
   		} else {
@@ -142,16 +144,19 @@ $(function() {
 			$('#headbar').show();
 			$('#headbar').css("width","100%");
     		$('#sidebar').show();
-    		$('#menu').show();
+			$('#menu').show();
 			$('#search').css("transform","translateX(0)");
 			$('#search').css("margin-top","0px");
 			$('#sub-menu-container').css("transform","translateY(0)");
 			$('#sub-menu-container').css("margin-top","0px");
 			injectSubMenu();
-			$('.fa-eye-slash').css('color','#fff');
-			$('.fa-eye-slash').css('background-color','rgb(47, 52, 61)');
-			$('.fa-eye').css('color','#fff');
-			$('.fa-eye').css('background-color','rgb(47, 52, 61)');
+			//START :: Icon Default
+			$('.fa-play').css('color','#fff');
+			$('.fa-play').css('background-color','#323232');
+			//START :: Icon change
+			$('.fa-eye-play').css('color','#fff');
+			$('.fa-eye-play').css('background-color','#323232');
+			//END
 			$('#a').removeClass('fa fa-bars');
 			$('#a').addClass('fa fa-times');
 			var accordion = new Accordion($('#sub-menu-bar'), true);
@@ -212,10 +217,13 @@ function halfHide() {
 	});
 
 	$('#hide').show();
-	$('.fa-eye-slash').css('color','#000');
-	$('.fa-eye-slash').css('background-color','#fff');
-	$('.fa-eye').css('color','#000');
-	$('.fa-eye').css('background-color','#fff');
+	//START :: Icon Default
+	$('.fa-play').css('color','#323232');
+	$('.fa-play').css('background-color','#fff');
+	//START :: Icon Change
+	$('.fa-play').css('color','#323232');
+	$('.fa-play').css('background-color','#fff');
+	//END
 	$('#title').hide();
 	$('#title').css("position","absolute");
 	$('#title').css("margin-left","-900px");
@@ -263,9 +271,9 @@ function animasi (mainMenu, subMenu) {
 	setTimeout(function(){
 		subMenu.animate({
 			"top":"50",
-	    "left": "0",
-	    "right": "-17",
-	    "margin-left": "0",
+	    	"left": "0",
+	    	"right": "-17",
+	    	"margin-left": "0",
 	    "width": "calc(100% + 17px)",
 			"height": subMenuHeight,
 		},250);
@@ -299,17 +307,18 @@ function injectItem() {
 	//START :: menuList = $(".submenu li"); 
 	//Jika ada penambahan menu bisa memasukkan key didalam menuList
     menuList = {
-    	"Inventory"  : "pencarian abc 1",
-    	"singkatan2" : "pencarian def 2",
-    	"singkatan3" : "pencarian ghi 3",
-    	"singkatan4" : "pencarian jkl 4",
-    	"singkatan5" : "pencarian mno 5",
-    	"singkatan6" : "pencarian pq 6",
-    	"singkatan7" : "pencarian rs 7",
-    	"singkatan8" : "pencarian tu 8",
-		"singkatan9" : "pencarian v9",
-		"singkatan9" : "pencarian wxyz 10",
-		"singkatan9" : "!!"
+		//"Unique Key"  : "nama menu"
+    	"SO"  			: "Sales Order",
+    	"PO" 			: "Purchase Order",
+    	"AR" 			: "Account Receivable",
+    	"AP" 			: "Account Payable",
+    	"RB" 			: "Retur Barang",
+    	"FJ" 			: "Faktur Jual",
+    	"FB" 			: "Faktur Beli",
+    	"PD" 			: "Penyerahan Dokumen",
+		"singkatan9" 	: "pencarian v9",
+		"singkatan9" 	: "pencarian wxyz 10",
+		"singkatan9" 	: "!!"
 	};
 	//END :: menuList = $(".submenu li"); 
 
