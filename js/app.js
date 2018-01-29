@@ -328,7 +328,7 @@ function injectItem() {
 
 		    for (i = 0; i < subMenuItem.length; i++) {
 		    	$('.submenu').append(
-					`<li><a href="#">${subMenuItem[i]}</a></li>`
+					`<li><a href="#" value="${listSingkatan[i]}">${subMenuItem[i]}</a></li>`
 				);
 		    }
 			filter();
@@ -347,6 +347,7 @@ function injectItem() {
 //START :: Fungsi filter key
 function filter() {
     var input, filter, a, i;
+    var b= [];
 	input = document.getElementById('searchInput');
     filter = input.value.toUpperCase();
 
@@ -355,11 +356,14 @@ function filter() {
         a = items[i].getElementsByTagName("a")[0];
         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
 			items[i].style.display = "background-color:red;";
+        } else if (a.getAttribute("value").toUpperCase().indexOf(filter) > -1) {
+			items[i].style.display = "background-color:red;";
         } else {
 			items[i].style.display = "none";
         }
-    }
+    }    
 }
+
 //END :: Fungsi filter key
 
 //**----  END :: BAGIAN FUNGSI DARI BERBAGAI ELEMENT ----**//
