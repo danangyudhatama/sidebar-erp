@@ -354,14 +354,22 @@ function filter() {
 	var items = $('.submenu li');
     for (i = 0; i < items.length; i++) {
         a = items[i].getElementsByTagName("a")[0];
+        // cek apakah input sesuai dengan sub menu item
         if (a.innerHTML.toUpperCase().indexOf(filter) > -1) {
 			items[i].style.display = "background-color:red;";
+		// cek apakah input sesuai dengan singkatan sub menu item
         } else if (a.getAttribute("value").toUpperCase().indexOf(filter) > -1) {
 			items[i].style.display = "background-color:red;";
         } else {
 			items[i].style.display = "none";
         }
-    }    
+
+        if($('.submenu li:visible').length == 0) {
+        	if ($('#sub-menu-bar').find('img').length == 0)
+        	$('#sub-menu-bar').prepend('<img id="theImg" src="robo.jpg" height="110" width="220"/>');
+        }
+    }
+
 }
 
 //END :: Fungsi filter key
